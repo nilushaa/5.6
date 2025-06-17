@@ -1,32 +1,28 @@
 import { products } from "./data.js";
-import { renderUi } from "./renderUi.js";
+import {renderUi} from "./renderUi.js"
 import "./searcg.js";
-
-const priceSort = document.getElementById("prise-sort");
+const priceSort = document.getElementById("price-sort");
 const html = document.documentElement;
 const themeTaggler = document.getElementById("theme-taggler");
-renderUi(products);
+const theme = localStorage.getItem("theme");
 
 
-// const theme = localStorage.getItem("theme");
-
+renderUi(products)
 
 priceSort.addEventListener("change", (e) => {
   const price =
     e.target.options[e.target.selectedIndex].getAttribute("data-price");
   const productsForSorting = [...products];
   if (price == "low") {
-    const newSort = productsForSorting.sort((a, b) => {
-      return;
-      a.price - b.price;
+   const newSort= productsForSorting.sort((a, b) => {
+    return  a.price - b.price;
     });
-    renderUi(newSort);
-  } else if (price == "hight") {
-    const newSort = productsForSorting.sort((a, b) => {
-      return;
-      b.price - a.price;
-    });
-    renderUi(newSort);
+    renderUi(newSort)
+  }else if(price=="hight"){
+    const newSort= productsForSorting.sort((a, b) => {
+      return  b.price - a.price;
+      });
+      renderUi(newSort)
   }
 });
 
@@ -43,6 +39,8 @@ themeTaggler.addEventListener("click", () => {
   localStorage.setItem("theme", html.dataset.theme);
   themeTaggler.checked = html.dataset.theme == "synthwave" ? true : false;
 });
+
+
 
 const images = [
   "../../images/Discount.png",
@@ -62,7 +60,3 @@ setInterval(() => {
     banner.style.opacity = 1;
   }, 500);
 }, 4000);
-
-function buyProduct(e) {
-  console.log(e);
-}

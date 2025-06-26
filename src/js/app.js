@@ -21,7 +21,7 @@ priceSort.addEventListener("change", (e) => {
   }else if(price=="hight"){
     const newSort= productsForSorting.sort((a, b) => {
       return  b.price - a.price;
-      });
+      });         
       renderUi(newSort)
   }
 });
